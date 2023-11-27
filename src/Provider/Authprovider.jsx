@@ -36,7 +36,12 @@ const Authprovider = ({ children }) => {
             // const loggedEmail = { email: usermail }
             console.log(currentUser)
             setUser(currentUser)
-            setLoading(false)
+            if(currentUser){
+                setLoading(false)
+            }
+            else{
+                setLoading(false)
+            }
             
         })
         return () => {

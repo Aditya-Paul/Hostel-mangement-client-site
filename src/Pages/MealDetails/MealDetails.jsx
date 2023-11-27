@@ -10,7 +10,7 @@ import UseReview from '../../Hook/UseReview';
 
 const MealDetails = () => {
     const { users } = UseUsermail()
-    const [, ,reviewrefetch] = UseReview()
+    const [, , reviewrefetch] = UseReview()
     //console.log(userreviews)
     const navigate = useNavigate()
     const axiospublic = UseAxiospublic()
@@ -30,24 +30,31 @@ const MealDetails = () => {
         const incrlike = {
             likes: newlikes
         }
+        //console.log(incrlike, typeof (incrlike))
 
-        console.log(incrlike, typeof (incrlike))
-
-        const res = await axiospublic.patch(`/meals/${id}`, incrlike)
+        const res = await axiospublic.patch(`/likesmeals/${id}`, incrlike)
         console.log(res.data)
         if (res.data.modifiedCount > 0) {
             setLike(newlikes)
-
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: `is updated to the meal`,
-                showConfirmButton: false,
-                timer: 1500
-            });
-
+            const res2 = await axiospublic.patch(`/reqmeals/${id}`, incrlike)
+            if (res2.data.modifiedCount > 0) {
+                console.log('thik ase')
+                const res3 = await axiospublic.patch(`/likesreview/${id}`, incrlike)
+                console.log(res3.data)
+                if (res3.data.modifiedCount > 0) {
+                    Swal.fire("Good job!", "Add data Successfully & Posted to the database", "success");
+                }
+            }
+            // Swal.fire({
+            //     position: "top-end",
+            //     icon: "success",
+            //     title: `is updated to the meal`,
+            //     showConfirmButton: false,
+            //     timer: 1500
+            // });
         }
     }
+
     const handlepost = async () => {
         const reqitem = {
             item_image: image,
@@ -89,6 +96,8 @@ const MealDetails = () => {
         const reviewitem = {
             meal_review: review,
             meal_id: _id,
+            meal_likes: Like,
+            meal_title: title,
             review_usermail: user.email,
             review_username: user.displayName,
         }
@@ -101,7 +110,7 @@ const MealDetails = () => {
             const incrreview = {
                 reviews: newreviews
             }
-            const res = await axiospublic.patch(`/meals/${_id}`, incrreview)
+            const res = await axiospublic.patch(`/reviewmeals/${_id}`, incrreview)
             console.log(res.data)
             if (res.data.modifiedCount > 0) {
                 setRevw(newreviews)
@@ -142,7 +151,7 @@ const MealDetails = () => {
                             <p className="py-6"><h1>Ingredients:</h1> {ingredients}</p>
                             <br />
                             <p><h1>Date:</h1> {date}</p>
-                            <p>review:{revw}</p>
+                            <p className='text-xl text-pink-600'>review: <span className='text-xl text-pink-600'>{revw}</span></p>
                             <br />
                             <p class="text-orange-700">
                                 <Rating
@@ -200,7 +209,7 @@ const MealDetails = () => {
                 <h1 className='text-2xl'>Users Review</h1>
                 <table className="table ">
                     {/* head */}
-                    <thead className= 'border-2 border-t-orange-200'>
+                    <thead className='border-2 border-t-orange-200'>
                         <tr>
                             <th></th>
                             <th>Name</th>
@@ -210,13 +219,13 @@ const MealDetails = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            rview.map((item,index) => <>
+                            rview.map((item, index) => <>
                                 <tr >
                                     <td>
-                                       {index + 1}
+                                        {index + 1}
                                     </td>
                                     <td>
-                                       {item.review_usermail}
+                                        {item.review_usermail}
                                     </td>
                                     <td>
                                         {item.meal_review}

@@ -25,6 +25,7 @@ const RequestedMeals = () => {
                             <th>Title</th>
                             <th>Likes</th>
                             <th>Review</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -44,6 +45,9 @@ const RequestedMeals = () => {
                                     </td>
                                     <td>
                                         {item.item_reviews}
+                                    </td>
+                                    <td>
+                                        {item.status}
                                     </td>
                                     <td>
                                         <button className='btn '>cancle</button>

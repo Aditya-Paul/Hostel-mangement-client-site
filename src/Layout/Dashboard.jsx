@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { FaHome,FaUtensils  } from 'react-icons/fa';
+import { FaHome, FaUtensils } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
 import Navbar from '../Shared/Navbar';
 import Footer from '../Shared/Footer';
@@ -17,8 +17,13 @@ const Dashboard = () => {
                             <>
                                 <li>
 
-                                    <NavLink to='/dashboard/checkout/price'>
-                                        <FaHome></FaHome> Payments</NavLink>
+                                    <NavLink to='/dashboard/profile'>
+                                        <CgProfile></CgProfile>User Profile</NavLink>
+                                </li>
+                                <li>
+
+                                    <NavLink to='/dashboard/myreviews'>
+                                        <FaHome></FaHome> My Reviews</NavLink>
                                 </li>
                                 <li>
 
@@ -27,14 +32,37 @@ const Dashboard = () => {
                                 </li>
                                 <li>
 
-                                    <NavLink to='/dashboard/profile'>
-                                        <CgProfile></CgProfile>  Profile</NavLink>
+                                    <NavLink to='/dashboard/checkout/price'>
+                                        <FaHome></FaHome> Payments</NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink to='/dashboard/adminprofile'>
+                                        <CgProfile></CgProfile> Admin profile</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/manageusers'>
+                                        <FaHome></FaHome> Manage Users</NavLink>
                                 </li>
                                 <li className='bg-white text-black'>
                                     <Link to='/dashboard/addmeal' className='transpa add-meal-link hover:text-pink-300'>
                                         <FaUtensils></FaUtensils> Add Meal
                                     </Link>
                                 </li>
+                                <li>
+                                    <NavLink to='/dashboard/allmeals'>
+                                        <FaHome></FaHome> All Meals</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/allreviews'>
+                                        <FaHome></FaHome> All reviews</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/servemeals'>
+                                        <FaHome></FaHome>serve meals</NavLink>
+                                </li>
+
+
                                 {/* <li>
                                     <NavLink to='/dashboard/ManageItems'>
                                         <FaList></FaList> Manage Items</NavLink>

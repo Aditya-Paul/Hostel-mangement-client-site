@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const UseReview = () => {
     const axiospublic = UseAxiospublic()
-    const {data:userreviews=[], isPending, refetch: reviewrefetch} = useQuery({
+    const {data:userreviews=[], isPending, refetch} = useQuery({
         queryKey:['reviews'],
         queryFn:async()=>{
             const res = await axiospublic.get('/reviews')
@@ -12,7 +12,7 @@ const UseReview = () => {
         }
     })
     // console.log(userreviews)
-    return [userreviews,isPending,reviewrefetch]
+    return [userreviews,isPending,refetch]
 };
 
 export default UseReview;

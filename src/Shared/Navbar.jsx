@@ -42,7 +42,7 @@ const Navbar = () => {
     const links1 = <>
         <li><Link className="text-black" to='/'>Home</Link></li>
         <li><Link className="text-black" to='/meals'>Meals</Link></li>
-        <li><Link className="text-black" to='/upcomigMeals'>Upcomig Meals</Link></li>
+        <li><Link className="text-black" to='/userupcoming'>Upcomig Meals</Link></li>
         <li><Link className="text-black" to='/notification'><IoIosNotifications></IoIosNotifications></Link></li>
         {
             user ?

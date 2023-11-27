@@ -14,6 +14,10 @@ import MealDetails from '../Pages/MealDetails/MealDetails';
 import Payment from '../Pages/Payment/Payment';
 import UserProfile from '../Pages/UserProfile/UserProfile';
 import RequestedMeals from '../Pages/RequestedMeal/RequestedMeals';
+import UpcomingMeals from '../Pages/UpcomingMeals/UpcomingMeals';
+import Myreview from '../Pages/Myreview/Myreview';
+import ManageUser from '../Pages/ManageUser/ManageUser';
+import AllMeal from '../Pages/AllMeal/AllMeal';
 
 const Router = createBrowserRouter([
     {
@@ -35,6 +39,10 @@ const Router = createBrowserRouter([
                 loader: ({params})=>fetch(`http://localhost:3000/meals/${params.id}`)
             },
             {
+                path: "/userupcoming",
+                element: <UpcomingMeals></UpcomingMeals>,
+            },
+            {
                 path: "/login",
                 element: <Login></Login>,
             },
@@ -54,12 +62,24 @@ const Router = createBrowserRouter([
                 element: <AddMeal></AddMeal>,
             },
             {
+                path: "myreviews",
+                element: <Myreview></Myreview>,
+            },
+            {
                 path: "reqmeals",
                 element: <RequestedMeals></RequestedMeals>,
             },
             {
                 path: "profile",
                 element: <UserProfile></UserProfile>,
+            },
+            {
+                path: "manageusers",
+                element: <ManageUser></ManageUser>,
+            },
+            {
+                path: "allmeals",
+                element: <AllMeal></AllMeal>,
             },
             {
                 path: "checkout/:price",
