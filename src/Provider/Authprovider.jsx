@@ -3,8 +3,10 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
  import { GoogleAuthProvider } from "firebase/auth";
 import app from "../Firebase/firebase.config";
 import axios from "axios";
+import UseAxiospublic from "../Hook/UseAxiospublic";
 
 export const AuthContext = createContext(null);
+const axiospublic = UseAxiospublic()
 const auth = getAuth(app);
 const googleprovider = new GoogleAuthProvider();
 
@@ -37,10 +39,20 @@ const Authprovider = ({ children }) => {
             console.log(currentUser)
             setUser(currentUser)
             if(currentUser){
-                setLoading(false)
+                setLoading(false);
+                const userInfo = { email: currentUser.email }
+                axiospublic.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            
+                            localStorage.setItem('access-token', res.data.token);
+                            setLoading(false);
+                        }
+                    })
             }
             else{
-                setLoading(false)
+                localStorage.removeItem('access-token');
+                setLoading(false);
             }
             
         })

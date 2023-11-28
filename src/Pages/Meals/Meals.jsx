@@ -23,7 +23,7 @@ const Meals = () => {
 
     return (
         <div>
-            <div className=" flex flex-wrap space-y-5 items-center justify-between pt-20">
+            <div className=" flex flex-wrap space-y-5 items-center justify-between  pt-24 md:pt-20 ">
                 <div className="">
                     Available Meals
                     <select onChange={categorychange}

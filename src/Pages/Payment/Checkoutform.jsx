@@ -1,9 +1,9 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/Authprovider';
-import UseAxiossecure from '../../Hook/UseAxiossecure';
 import Swal from 'sweetalert2';
 import UseUsermail from '../../Hook/UseUsermail';
+import UseAxiospublic from '../../Hook/UseAxiospublic';
 // import Swal from 'sweetalert2';
 
 const Checkoutform = ({ price, bedge }) => {
@@ -14,7 +14,7 @@ const Checkoutform = ({ price, bedge }) => {
     const [data, setData] = useState('')
     const stripe = useStripe();
     const elements = useElements()
-    const axiosSecure = UseAxiossecure()
+    const axiospublic = UseAxiospublic()
     const { user } = useContext(AuthContext)
     const { refetch } = UseUsermail()
 
@@ -22,14 +22,14 @@ const Checkoutform = ({ price, bedge }) => {
 
     useEffect(() => {
         if (price > 0) {
-            axiosSecure.post('/create-payment-intent', { price: price })
+            axiospublic.post('/create-payment-intent', { price: price })
                 .then(res => {
                     console.log(res.data.clientSecret)
                     setclientSecret(res.data.clientSecret)
                 })
         }
 
-    }, [axiosSecure, price])
+    }, [axiospublic, price])
 
     const hadlesubmit = async (event) => {
         event.preventDefault();
@@ -76,7 +76,7 @@ const Checkoutform = ({ price, bedge }) => {
                 const info = {
                     badge: bedge
                 }
-                const res = await axiosSecure.patch(`/users/${user?.email}`, info);
+                const res = await axiospublic.patch(`/users/${user?.email}`, info);
                 console.log(res.data)
                 refetch()
                 Swal.fire("Good job!", `Puchase ${bedge} badge Successfully & Posted to the database, Welcome`, "success");

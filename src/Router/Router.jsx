@@ -22,6 +22,8 @@ import AllReview from '../Pages/AllReview/AllReview';
 import ServeMeal from '../Pages/ServeMeal/ServeMeal';
 import AdminUpcoming from '../Pages/AdminUpcoming/AdminUpcoming';
 import AdminProfile from '../Pages/AdminProfile/AdminProfile';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
 
 const Router = createBrowserRouter([
     {
@@ -62,44 +64,46 @@ const Router = createBrowserRouter([
         errorElement: <Error></Error>,
         children: [
             {
-                path: "addmeal",
-                element: <AddMeal></AddMeal>,
-            },
-            {
-                path: "myreviews",
-                element: <Myreview></Myreview>,
+                path: "profile",
+                element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
             },
             {
                 path: "reqmeals",
-                element: <RequestedMeals></RequestedMeals>,
+                element: <PrivateRoute><RequestedMeals></RequestedMeals></PrivateRoute>,
             },
             {
-                path: "profile",
-                element: <UserProfile></UserProfile>,
+                path: "myreviews",
+                element: <PrivateRoute><Myreview></Myreview></PrivateRoute>,
             },
+            
+            // admin route
             {
                 path: "adminprofile",
-                element: <AdminProfile></AdminProfile>,
+                element: <AdminRoute><AdminProfile></AdminProfile></AdminRoute>,
             },
             {
                 path: "manageusers",
-                element: <ManageUser></ManageUser>,
+                element: <AdminRoute><ManageUser></ManageUser></AdminRoute>,
+            },
+            {
+                path: "addmeal",
+                element: <AdminRoute><AddMeal></AddMeal></AdminRoute>,
             },
             {
                 path: "allmeals",
-                element: <AllMeal></AllMeal>,
+                element: <AdminRoute><AllMeal></AllMeal></AdminRoute>,
             },
             {
                 path: "allreviews",
-                element: <AllReview></AllReview>,
+                element: <AdminRoute><AllReview></AllReview></AdminRoute>,
             },
             {
                 path: "servemeals",
-                element: <ServeMeal></ServeMeal>,
+                element: <AdminRoute><ServeMeal></ServeMeal></AdminRoute>,
             },
             {
                 path: "adminupcoming",
-                element: <AdminUpcoming></AdminUpcoming>,
+                element: <AdminRoute><AdminUpcoming></AdminUpcoming></AdminRoute>,
             },
             {
                 path: "checkout/:price",

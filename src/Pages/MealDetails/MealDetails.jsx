@@ -10,11 +10,11 @@ import UseReview from '../../Hook/UseReview';
 
 const MealDetails = () => {
     const { users } = UseUsermail()
-    const [, , reviewrefetch] = UseReview()
+    const [, , refetch] = UseReview()
     //console.log(userreviews)
     const navigate = useNavigate()
     const axiospublic = UseAxiospublic()
-    const [, , refetch] = UseMeal()
+    //const [, , refetch] = UseMeal()
     const { user } = useContext(AuthContext)
     const { image, title, adminName, description, ingredients, date, rating, likes, reviews, _id } = useLoaderData()
     const [Like, setLike] = useState(likes)
@@ -122,6 +122,7 @@ const MealDetails = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                refetch()
 
             }
         }
@@ -129,7 +130,7 @@ const MealDetails = () => {
     useEffect(() => {
         axiospublic.get(`/reviews/${_id}`)
             .then(res => {
-                reviewrefetch()
+                //reviewrefetch()
                 console.log(res.data)
                 setrview(res.data)
             })
@@ -173,7 +174,7 @@ const MealDetails = () => {
                                             (users.bagde === "silver" || users.bagde === "gold" || users.bagde === "platinum") ? (
                                                 <button onClick={handlepost} className="btn btn-primary">Meal Request</button>
                                             ) : (
-                                                <button onClick={handlepayment} className="btn btn-primary">Payment</button>
+                                                <button onClick={handlepayment} className="btn btn-primary">Meal Request</button>
                                             )
                                         }
                                     </>
@@ -194,7 +195,7 @@ const MealDetails = () => {
                                     user ?
                                         <input type="submit" className='btn' value={"Submit"} />
                                         :
-                                        ""
+                                        "Please Login first to make review"
                                 }
                             </form>
                         </div>

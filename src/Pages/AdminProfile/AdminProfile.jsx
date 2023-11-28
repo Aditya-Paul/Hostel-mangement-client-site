@@ -2,18 +2,17 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Provider/Authprovider';
 import UseUsermail from '../../Hook/UseUsermail';
 import UseMeal from '../../Hook/UseMeal';
+import UseAdmin from '../../Hook/UseAdmin';
 
 const AdminProfile = () => {
     const { user } = useContext(AuthContext)
-    // const { users } = UseUsermail()
     const [meals] = UseMeal()
+    const [isAdmin,isAdminLoading] = UseAdmin()
     const mymeal = meals.filter(item=>item.adminEmail === `${user.email}`)
-    // const Breakfast = meals.filter(item => item.category === 'Breakfast')
-    console.log(user)
     return (
         <div>
-
-            <section className="bg-grey-lightest py-8">
+            {isAdmin?
+                <section className="bg-grey-lightest py-8">
                 <div className="w-full max-w-7xl mx-auto mt-8">
                     <div className="flex flex-wrap -mx-6 -my-6">
                         <div className="w-full lg:w-1/2 px-6 py-6 text-center">
@@ -37,6 +36,9 @@ const AdminProfile = () => {
                     </div>
                 </div>
             </section>
+            :
+            ""
+            }
         </div>
     );
 };

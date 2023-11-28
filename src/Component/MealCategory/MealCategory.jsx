@@ -17,7 +17,7 @@ const MealCategory = () => {
         <div className='flex flex-col max-w-full items-center' >
             <Tabs className="gap-2 text-purple-400 bg-pink-100" selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList className="flex">
-                    <Tab>All</Tab>
+                    <Tab>All Meals</Tab>
                     <Tab>Breakfast</Tab>
                     <Tab>Lunch</Tab>
                     <Tab>Dinner</Tab>

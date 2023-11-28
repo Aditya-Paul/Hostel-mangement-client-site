@@ -1,19 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import UseAxiossecure from '../../Hook/UseAxiossecure';
 import { MdOutlineSystemUpdateAlt } from "react-icons/md";
 import Swal from 'sweetalert2';
+import UseAxiospublic from '../../Hook/UseAxiospublic';
 const AdminUpcoming = () => {
-    const axiossecure = UseAxiossecure()
+    const axiospublic = UseAxiospublic()
     const { data: upcomings = [], isPending, refetch } = useQuery({
         queryKey: ['upcomings'],
         queryFn: async () => {
-            const res = await axiossecure.get('/upcomings')
+            const res = await axiospublic.get('/upcomings')
             return res.data
         }
     })
     const handlepublish = async(id) =>{
-        const res = await axiossecure.get(`/upcomings/${id}`)
+        const res = await axiospublic.get(`/upcomings/${id}`)
         console.log("paisi")
         console.log(res.data)
         const mealinfo = {
@@ -26,15 +26,15 @@ const AdminUpcoming = () => {
             rating: res.data.rating,
             date: res.data.date,
             likes: res.data.likes,
-            reviews: res.data.rievews,
+            reviews: 0,
             adminName: res.data.adminName,
             adminEmail: res.data.adminEmail,
         }
-        const menures = await axiossecure.post('/meals', mealinfo)
+        const menures = await axiospublic.post('/meals', mealinfo)
         //console.log(menures)
         if (menures.data.insertedId) {
             
-            const res = await axiossecure.delete(`/upcomings/${id}`)
+            const res = await axiospublic.delete(`/upcomings/${id}`)
             if(res.data.deletedCount > 0){
                 Swal.fire({
                     position: "top-end",
@@ -62,6 +62,7 @@ const AdminUpcoming = () => {
                             <th>price</th>
                             <th>date</th>
                             <th>likes</th>
+                            <th>Review</th>
                             <th>DistributorName</th>
                             <th>DistributorEmail</th>
                         </tr>
@@ -86,6 +87,7 @@ const AdminUpcoming = () => {
                                 <td>{item.price}</td>
                                 <td>{item.date}</td>
                                 <td>{item.likes}</td>
+                                <td>{item.reviews}</td>
                                 <td>{item.adminName}</td>
                                 <td>{item.adminEmail}</td>
                                 {
