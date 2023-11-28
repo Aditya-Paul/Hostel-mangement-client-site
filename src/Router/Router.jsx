@@ -18,6 +18,10 @@ import UpcomingMeals from '../Pages/UpcomingMeals/UpcomingMeals';
 import Myreview from '../Pages/Myreview/Myreview';
 import ManageUser from '../Pages/ManageUser/ManageUser';
 import AllMeal from '../Pages/AllMeal/AllMeal';
+import AllReview from '../Pages/AllReview/AllReview';
+import ServeMeal from '../Pages/ServeMeal/ServeMeal';
+import AdminUpcoming from '../Pages/AdminUpcoming/AdminUpcoming';
+import AdminProfile from '../Pages/AdminProfile/AdminProfile';
 
 const Router = createBrowserRouter([
     {
@@ -74,12 +78,28 @@ const Router = createBrowserRouter([
                 element: <UserProfile></UserProfile>,
             },
             {
+                path: "adminprofile",
+                element: <AdminProfile></AdminProfile>,
+            },
+            {
                 path: "manageusers",
                 element: <ManageUser></ManageUser>,
             },
             {
                 path: "allmeals",
                 element: <AllMeal></AllMeal>,
+            },
+            {
+                path: "allreviews",
+                element: <AllReview></AllReview>,
+            },
+            {
+                path: "servemeals",
+                element: <ServeMeal></ServeMeal>,
+            },
+            {
+                path: "adminupcoming",
+                element: <AdminUpcoming></AdminUpcoming>,
             },
             {
                 path: "checkout/:price",

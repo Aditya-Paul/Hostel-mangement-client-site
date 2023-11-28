@@ -61,6 +61,10 @@ const Dashboard = () => {
                                     <NavLink to='/dashboard/servemeals'>
                                         <FaHome></FaHome>serve meals</NavLink>
                                 </li>
+                                <li>
+                                    <NavLink to='/dashboard/adminupcoming'>
+                                        <FaHome></FaHome>Upcoming meals</NavLink>
+                                </li>
 
 
                                 {/* <li>

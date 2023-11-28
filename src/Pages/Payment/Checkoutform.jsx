@@ -6,16 +6,17 @@ import Swal from 'sweetalert2';
 import UseUsermail from '../../Hook/UseUsermail';
 // import Swal from 'sweetalert2';
 
-const Checkoutform = ({ price,bedge }) => {
+const Checkoutform = ({ price, bedge }) => {
     //console.log((bedge))
     const [error, setError] = useState('');
     const [clientSecret, setclientSecret] = useState('');
     const [transactionId, settransactionId] = useState('');
+    const [data, setData] = useState('')
     const stripe = useStripe();
     const elements = useElements()
     const axiosSecure = UseAxiossecure()
-    const {user} = useContext(AuthContext)
-    const { refetch} = UseUsermail()
+    const { user } = useContext(AuthContext)
+    const { refetch } = UseUsermail()
 
     console.log('dekhi', price, typeof (price))
 
@@ -28,7 +29,7 @@ const Checkoutform = ({ price,bedge }) => {
                 })
         }
 
-    }, [axiosSecure,price])
+    }, [axiosSecure, price])
 
     const hadlesubmit = async (event) => {
         event.preventDefault();
@@ -45,11 +46,11 @@ const Checkoutform = ({ price,bedge }) => {
         })
         if (error) {
             console.log('payment error', error)
-             setError(error.message)
+            setError(error.message)
         }
         else {
             console.log('payment method', paymentMethod)
-             setError(' ')
+            setError(' ')
         }
         // //  confirm payment
         const { paymentIntent, error: confirmerror } = await stripe.confirmCardPayment(
@@ -69,10 +70,11 @@ const Checkoutform = ({ price,bedge }) => {
         else {
             console.log("success", paymentIntent)
             if (paymentIntent.status === "succeeded") {
+                setData("success")
                 console.log("transection id", paymentIntent.id)
                 settransactionId(paymentIntent.id)
-                const info={
-                    badge:bedge
+                const info = {
+                    badge: bedge
                 }
                 const res = await axiosSecure.patch(`/users/${user?.email}`, info);
                 console.log(res.data)
@@ -84,21 +86,51 @@ const Checkoutform = ({ price,bedge }) => {
     return (
         <form onSubmit={hadlesubmit}>
             <CardElement
-             options={{
-                style: {
-                    base: {
-                        fontSize: '16px',
-                        color: '#424770',
-                        '::placeholder': {
-                            color: '#aab7c4'
+                options={{
+                    style: {
+                        base: {
+                            fontSize: '16px',
+                            color: '#424770',
+                            '::placeholder': {
+                                color: '#aab7c4'
+                            },
                         },
-                    },
-                    invalid: {
-                        color: '#9e2146',
+                        invalid: {
+                            color: '#9e2146',
+                        }
                     }
-                }
-            }} />
-            <button type='submit' className='btn btn-sm btn-primary my-4' disabled={!stripe || !clientSecret}>Pay</button>
+                }} />
+            {/* <button type='submit' className='btn btn-sm border-t-green-100 my-4' disabled={!stripe || !clientSecret}>Pay</button> */}
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <button type='submit' className='btn btn-sm border-t-green-100 my-4' disabled={!stripe || !clientSecret} onClick={() => document.getElementById('my_modal_5').showModal()}>Pay</button>
+            {
+                data === 'success' ?
+                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                        <div className="modal-box">
+                            <h3 className="font-bold text-lg">Hello!</h3>
+                            <p className="py-4">Yout Payment is succeslly done</p>
+                            <div className="modal-action">
+                                <form method="dialog">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+                    :
+                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                        <div className="modal-box">
+                            <h3 className="font-bold text-lg">Hello!</h3>
+                            <p className="py-4">Something wrong please try again </p>
+                            <div className="modal-action">
+                                <form method="dialog">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+            }
             <p className='text-2xl text-pink-200'>{error}</p>
             {
                 transactionId && <p className='text-3xl text-pink-400'>This is your transaction id: {transactionId}</p>

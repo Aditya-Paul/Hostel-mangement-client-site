@@ -68,7 +68,7 @@ const Payment = () => {
 
                     </>
                     :
-                    <p>You have to select the memeber ship first</p>
+                    <p>You have to select the Package first</p>
 
             }
         </div>
