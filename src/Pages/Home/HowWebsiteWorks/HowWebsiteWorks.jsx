@@ -6,54 +6,46 @@ const HowWebsiteWorks = () => {
             <div className="collapse bg-pink-200">
                 <input type="radio" name="my-accordion-1" checked="checked" />
                 <div className="collapse-title text-xl font-medium text-center">
-                How a Website Works 
+                How Hmanagement Works 
                 </div>
             </div>
             <div className="collapse bg-pink-200">
                 <input type="radio" name="my-accordion-1" />
                 <div className="collapse-title text-xl font-medium">
-                User Sends a Request
+                Display Part
                 </div>
                 <div className="collapse-content">
-                    <p>When a user enters a web address (URL) into their browser or clicks on a link, a request is sent to the server hosting the website. This request is typically made using the HTTP (Hypertext Transfer Protocol) or its secure variant, HTTPS.</p>
+                    <p>A user can see all the meals by category, if any user want to see his/her activity on this website, they have to go on the dashboard but if user do not login he / she won`t be able to see </p>
                 </div>
             </div>
             <div className="collapse bg-pink-200">
                 <input type="radio" name="my-accordion-1" />
                 <div className="collapse-title text-xl font-medium">
-                Server Processes the Request
+                Data request by user
                 </div>
                 <div className="collapse-content">
-                    <p>The web server receives the request and processes it. The server may need to fetch data from a database, execute server-side code, or perform other tasks to generate the content requested by the user.</p>
+                    <p>In our website a user can request for any meal but user have to purchase any package among silver,gold,platinum  them. Any user can post like and review each of the meal items.</p>
                 </div>
             </div>
             <div className="collapse bg-pink-200">
                 <input type="radio" name="my-accordion-1" />
                 <div className="collapse-title text-xl font-medium">
-                Server Sends a Response
+                Admin Vs User
                 </div>
                 <div className="collapse-content">
-                    <p>After processing the request, the server sends a response back to the user's browser. This response includes the HTML, CSS, JavaScript, and other assets needed to render the web page. The response is often structured in accordance with the client-server architecture.</p>
+                    <p>Admin have full access all the data callected from the user on the other hand user have acces only his/her data. Admin dashboard is fully different from the users.</p>
                 </div>
             </div>
             <div className="collapse bg-pink-200">
                 <input type="radio" name="my-accordion-1" />
                 <div className="collapse-title text-xl font-medium">
-                Browser Renders the Page
+                Data collection
                 </div>
                 <div className="collapse-content">
-                    <p>The user's browser receives the response and interprets the HTML, CSS, and JavaScript to render the web page. HTML provides the structure, CSS styles the page, and JavaScript adds interactivity and dynamic behavior. The browser may need to make additional requests for images, stylesheets, scripts, or other resources referenced in the initial HTML.</p>
+                    <p>Our site is fully connected to the mongodb .</p>
                 </div>
             </div>
-            <div className="collapse bg-pink-200">
-                <input type="radio" name="my-accordion-1" />
-                <div className="collapse-title text-xl font-medium">
-                User Interacts with the Page
-                </div>
-                <div className="collapse-content">
-                    <p>The user can now interact with the fully rendered web page. This interaction may involve clicking links, submitting forms, or engaging with dynamic elements created using JavaScript. Subsequent interactions trigger new requests to the server, and the process repeats.</p>
-                </div>
-            </div>
+            
         </div>
     );
 };
