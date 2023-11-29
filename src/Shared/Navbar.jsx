@@ -40,15 +40,15 @@ const Navbar = () => {
     }
 
     const links1 = <>
-        <li><Link className="text-black" to='/'>Home</Link></li>
-        <li><Link className="text-black" to='/meals'>Meals</Link></li>
-        <li><Link className="text-black" to='/userupcoming'>Upcomig Meals</Link></li>
-        <li><Link className="text-black" to='/notification'><IoIosNotifications></IoIosNotifications></Link></li>
+        <li><Link className="text-pink-500" to='/'>Home</Link></li>
+        <li><Link className="text-pink-500" to='/meals'>Meals</Link></li>
+        <li><Link className="text-pink-500" to='/userupcoming'>Upcomig Meals</Link></li>
+        <li><Link className="text-pink-500" to='/notification'><IoIosNotifications></IoIosNotifications></Link></li>
         {
             user ?
                 ""
                 :
-                <li><Link className="text-black" to='/login'>Join Us</Link></li>
+                <li><Link className="text-pink-500" to='/login'>Join Us</Link></li>
         }
     </>
     return (
