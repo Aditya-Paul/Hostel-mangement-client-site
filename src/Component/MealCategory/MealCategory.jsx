@@ -7,15 +7,14 @@ import { Link, useParams } from 'react-router-dom';
 
 const MealCategory = () => {
     const [tabIndex, setTabIndex] = useState(0);
-    const [data,setdata] = useState([])
     const [meals] = UseMeal()
     const All = meals
     const Breakfast = meals.filter(item => item.category === 'Breakfast')
     const Lunch = meals.filter(item => item.category === 'Lunch')
     const Dinner = meals.filter(item => item.category === 'Dinner')
     return (
-        <div className='flex flex-col max-w-full items-center' >
-            <Tabs className="gap-2 text-purple-400 bg-pink-100" selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+        <div className='' >
+            <Tabs data-aos="fade-up" className="flex flex-col items-center justify-center pt-4 text-lg   italic" selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList className="flex">
                     <Tab>All Meals</Tab>
                     <Tab>Breakfast</Tab>
@@ -35,7 +34,9 @@ const MealCategory = () => {
                     <CategoryCard items={Dinner}></CategoryCard>
                 </TabPanel>
             </Tabs>
-            <Link to={'/meals'} className='btn bg-pink-300'><button >See All</button></Link>
+            {/* <div className='flex items-center justify-center'>
+            <Link to={'/meals'} className='btn bg-pink-300 '><button >See All</button></Link>
+            </div> */}
         </div>
     );
 };

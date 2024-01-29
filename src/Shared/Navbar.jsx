@@ -40,24 +40,23 @@ const Navbar = () => {
     }
 
     const links1 = <>
-        <li><Link className="text-pink-500" to='/'>Home</Link></li>
-        <li><Link className="text-pink-500" to='/meals'>Meals</Link></li>
-        <li><Link className="text-pink-500" to='/userupcoming'>Upcomig Meals</Link></li>
-        <li><Link className="text-pink-500" to='/notification'><IoIosNotifications></IoIosNotifications></Link></li>
+        <li><Link className="text-black font-normal text-lg italic" to='/'>Home</Link></li>
+        <li><Link className="text-black font-normal text-lg italic" to='/meals'>Meals</Link></li>
+        <li><Link className="text-black font-normal text-lg italic" to='/userupcoming'>Upcomig Meals</Link></li>
+
         {
             user ?
                 ""
                 :
-                <li><Link className="text-pink-500" to='/login'>Join Us</Link></li>
+                <li><Link className="text-black font-normal text-lg italic" to='/login'>Join Us</Link></li>
         }
     </>
     return (
         <div>
-            <div className="navbar max-w-screen-xl fixed z-10 bg-opacity-30  bg-black text-white " >
-                <div className="bg-opacity-60"></div>
+            <div className="navbar max-w-screen-xl absolute bg-opacity-0 bg-black text-white " >
                 <div className="navbar-start gap-4">
-                    <div className="dropdown ">
-                        <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                    <div className="dropdown bg-gray-300 rounded-lg">
+                        <label tabIndex={0} className="btn  lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                             <div className="flex-row text-green-400">
                                 {
@@ -70,8 +69,8 @@ const Navbar = () => {
                         </label>
                     </div>
                     <div className="flex justify-center items-center gap-2">
-                        <img src="https://i.ibb.co/PTW6bLx/hostel-loho.png" className="w-12 h-12" alt="" />
-                        <h2 className=" normal-case text-xl font-extrabold">Hmanagment</h2>
+                        <img src="https://i.ibb.co/ysfwpbJ/Beige-and-Grey-Simple-Circular-Nail-Art-Logo-2.png" className="w-40 h-16" alt="" />
+                        {/* <h2 className=" normal-case text-xl font-extrabold text-black">Hmanagment</h2> */}
                     </div>
 
                 </div>

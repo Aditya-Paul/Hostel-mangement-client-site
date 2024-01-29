@@ -25,7 +25,6 @@ const Meals = () => {
         <div>
             <div className=" flex flex-wrap space-y-5 items-center justify-between  pt-24 md:pt-20 ">
                 <div className="">
-                    Available Meals
                     <select onChange={categorychange}
                         value={MealCategory}
                         className="bordered border-2 rounded-lg h-12 ml-2"
@@ -43,13 +42,17 @@ const Meals = () => {
             </div>
 
             {/* meals card */}
-            <div className='grid md:grid-cols-2 grid-cols-1 gap-2 '>
+            <div className='grid md:grid-cols-3 grid-cols-1 gap-2 '>
                 {MealCategory === "All" ?
                     meals.map(item => <CategoryCardDetails key={item._id} item={item}></CategoryCardDetails>)
 
                     : Mealscategory.map(item => <CategoryCardDetails key={item._id} item={item}></CategoryCardDetails>)
                 }
             </div>
+
+           
+            
+            
         </div>
     );
 };
